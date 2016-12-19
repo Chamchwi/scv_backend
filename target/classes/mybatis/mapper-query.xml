@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "userMapper" >
+	
+	<!-- 
+	<update id="finalSubmit" parameterType="String">
+		update memberapplication set
+			applytype	= 1
+		where submit_number = #{submit_number};
+	</update>
+	
+	<select id="getapplystate" parameterType="String" resultType="String">
+		select applystatus
+		from memberapplication
+		where submit_number = #{submit_number};
+	</select>
+	<insert id="register" parameterType="java.util.HashMap">
+    	insert into logindata
+    		(userid, userpw, username)
+    		values (#{email}, #{password}, #{name});
+    </insert>
+	 -->
+	<!-- <select id="loadContents" parameterType="String" resultType="java.util.HashMap">
+		select userdata
+		from userdata
+		where id = #{id}
+	</select> -->
+	 
+	<!--<insert id="register" parameterType="java.util.HashMap">
+    	insert into userdata
+    		(id, email)
+    		values (#{id}, #{email})
+    </insert> -->
+	
+	
+	<insert id="register" parameterType="java.util.HashMap">
+    	insert into userdata
+    		(email, first_name, last_name, last_log, score, winning_streak)
+    		values (#{email}, #{first_name}, #{last_name}, #{last_log}, #{score}, #{winning_streak})
+    </insert>
+    
+    
+    <select id="getUserList" parameterType="java.util.HashMap">
+		select first_name, last_name, last_log, score, winningZ_streak from userdata where email = #{email};
+    </select>
+    
+    <select id="refreshRoom" parameterType="java.util.HashMap">
+    	select master_email, game_mode, room_id from roomdata;
+    </select>
+    
+    <insert id="createRoom" parameterType="java.util.HashMap">
+    	insert into roomdata
+    		(master_email, game_mode, room_id)
+    		values (#{master_email}, #{game_mode}, #{room_id})
+    </insert>
+    
+    <select id="getVersion" parameterType="String">
+    	select (version) from version_data where idx = #{idx};
+    </select>
+    
+   
+    
+    
+</mapper>
