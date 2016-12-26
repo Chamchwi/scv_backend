@@ -4,7 +4,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace= "userMapper" >
-
     <insert id="fb_register" parameterType="java.util.HashMap">
     	insert into userdata
     	(email, token, nickname, mode)
@@ -16,5 +15,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	(email, password, nickname, mode)
     	values (#{email}, #{password}, #{nickname}, "normal")
     </insert>
-    
 </mapper>

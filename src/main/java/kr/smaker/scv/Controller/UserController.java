@@ -44,10 +44,10 @@ public class UserController {
 
 		try {
 			db.normal_register(map);
+			return new UTF8Response("{\"success\":true\"}", "json").entity;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return null;
 	}
 	
@@ -64,6 +64,7 @@ public class UserController {
 		
 		try {
 			db.fb_register(map);
+			return new UTF8Response("{\"success\":true\"}", "json").entity;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -71,7 +72,7 @@ public class UserController {
 		return null;
 	}
 
-	@RequestMapping(value = "/fb_login", method = RequestMethod.GET)
+	/* @RequestMapping(value = "/fb_login", method = RequestMethod.GET)
 	public ResponseEntity<String> facebookLogin(HttpServletRequest request) throws Exception {
 
 		System.out.println("NAME : " + request.getParameter("first_name"));
@@ -110,5 +111,5 @@ public class UserController {
 			return new UTF8Response("{\"success\":false}", "json").entity;
 		}
 
-	}
+	} */
 }
