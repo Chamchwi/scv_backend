@@ -49,9 +49,9 @@ public class HomeController {
 		// JSONObject obj = new JSONObject();
 		String data = null;
 		try {
-			System.out.println(db.loadContents(idx));
+			// System.out.println(db.loadContents(idx));
 			
-			data = db.loadContents(idx);
+			// data = db.loadContents(idx);
 			
 			//HashMap<String, Object> map = data.get(0);
 			//obj.put("version", map.get("version"));

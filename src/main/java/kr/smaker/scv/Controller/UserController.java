@@ -27,30 +27,69 @@ import kr.smaker.scv.manager.UTF8Response;
 
 @RequestMapping(value = "/API", method = RequestMethod.POST)
 public class UserController {
-	
+
 	@Autowired
 	private DBService db;
+
+	@RequestMapping(value = "/normal_register", method = RequestMethod.POST)
+	public ResponseEntity<String> register(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String nickname = request.getParameter("nickname");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+
+		map.put("email", email);
+		map.put("password", password);
+		map.put("nickname", nickname);
+
+		try {
+			db.normal_register(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<String> register(HttpServletRequest request) throws Exception {
+	@RequestMapping(value ="/fb_register", method = RequestMethod.POST)
+	public ResponseEntity<String> facebook_register(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String token = request.getParameter("token");
+		String nickname = request.getParameter("nickname");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("email", email);
+		map.put("token", token);
+		map.put("nickname", nickname);
+		
+		try {
+			db.fb_register(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@RequestMapping(value = "/fb_login", method = RequestMethod.GET)
+	public ResponseEntity<String> facebookLogin(HttpServletRequest request) throws Exception {
 
 		System.out.println("NAME : " + request.getParameter("first_name"));
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		UserData data = new UserData();
-		
+
 		if (request.getParameter("email") == null) {
-			return new UTF8Response("{\"success\":false\", \"errorcode\":\"이메일을 입력해주세요.\"}", "json").entity; 
+			return new UTF8Response("{\"success\":false\", \"errorcode\":\"이메일을 입력해주세요.\"}", "json").entity;
 		} else if (request.getParameter("first_name") == null) {
-			return new UTF8Response("{\"success\":false\", \"errorcode\":\"first_name을 입력해주세요.\"}", "json").entity; 
+			return new UTF8Response("{\"success\":false\", \"errorcode\":\"first_name을 입력해주세요.\"}", "json").entity;
 		} else if (request.getParameter("last_name") == null) {
-			return new UTF8Response("{\"success\":false\", \"errorcode\":\"last_name을 입	력해주세요.\"}", "json").entity; 
-		} else if ((request.getParameter("email") == null) && 
-				(request.getParameter("first_name") == null) && 
-				(request.getParameter("last_name") == null)) {
+			return new UTF8Response("{\"success\":false\", \"errorcode\":\"last_name을 입	력해주세요.\"}", "json").entity;
+		} else if ((request.getParameter("email") == null) && (request.getParameter("first_name") == null)
+				&& (request.getParameter("last_name") == null)) {
 			return new UTF8Response("{\"success\":false\", \"errorcode\":\"입력된 값이 없습니다.\"}", "json").entity;
-			
+
 		}
-		
+
 		data.setEmail(request.getParameter("email"));
 		String email = data.getEmail();
 		if (email.equals(request.getParameter("email"))) {
@@ -62,7 +101,7 @@ public class UserController {
 			map.put("winning_streak", 0);
 
 			try {
-				db.register(map);
+				// db.register(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -72,11 +111,4 @@ public class UserController {
 		}
 
 	}
-	
-	@RequestMapping(value = "/user/list", method = RequestMethod.POST)
-	public ResponseEntity<String> UserList(HttpServletRequest request) {
-		return new UTF8Response("{\"success\":true}", "json").entity;
-	}
-	
-	
 }

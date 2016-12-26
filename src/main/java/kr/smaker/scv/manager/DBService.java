@@ -11,20 +11,11 @@ public class DBService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public void register(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		sqlSession.selectList("userMapper.register", map);
-	}
-
-	public void refreshRoom(HashMap<String, Object> map) {
-		sqlSession.selectList("userMapper.refreshRoom", map);
-	}
-
-	public void getVersion() {
-		sqlSession.selectList("userMapper.getversion");
-	}
-
-	public String loadContents(String idx) {
-		return sqlSession.selectOne("userMapper.loadContents", idx);
-	}
+	public void normal_register(HashMap<String, Object> map) throws Exception {
+    	sqlSession.insert("userMapper.normal_register", map);
+    }
+	
+	public void fb_register(HashMap<String, Object> map) throws Exception {
+    	sqlSession.insert("userMapper.fb_register", map);
+    }
 }
