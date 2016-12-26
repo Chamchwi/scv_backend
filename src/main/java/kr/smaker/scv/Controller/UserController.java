@@ -30,9 +30,9 @@ public class UserController {
 
 	@Autowired
 	private DBService db;
-
+	
 	@RequestMapping(value = "/normal_register", method = RequestMethod.POST)
-	public ResponseEntity<String> register(HttpServletRequest request) {
+	public ResponseEntity<String> normal_register(HttpServletRequest request) {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
