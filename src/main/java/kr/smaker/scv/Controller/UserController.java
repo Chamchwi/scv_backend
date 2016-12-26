@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.smaker.scv.dao.UserData;
+import kr.smaker.scv.manager.DBService;
 import kr.smaker.scv.manager.RemoveBOM;
 import kr.smaker.scv.manager.UTF8Response;
-import kr.smaker.scv.service.TestService;
 
 @Controller
 
 @RequestMapping(value = "/API", method = RequestMethod.POST)
 public class UserController {
-
-	@Resource(name = "testService")
-	private TestService testService;
+	
+	@Autowired
+	private DBService db;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> register(HttpServletRequest request) throws Exception {
@@ -61,7 +62,7 @@ public class UserController {
 			map.put("winning_streak", 0);
 
 			try {
-				testService.register(map);
+				db.register(map);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -74,9 +75,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/user/list", method = RequestMethod.POST)
 	public ResponseEntity<String> UserList(HttpServletRequest request) {
-		
-		
 		return new UTF8Response("{\"success\":true}", "json").entity;
 	}
+	
 	
 }

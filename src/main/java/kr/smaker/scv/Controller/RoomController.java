@@ -5,22 +5,24 @@ import java.util.HashMap;
 import javax.annotation.Resource;
 import javax.print.attribute.HashAttributeSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.smaker.scv.manager.DBService;
 import kr.smaker.scv.manager.UTF8Response;
-import kr.smaker.scv.service.TestService;
+
 
 @Controller()
 
 @RequestMapping(value = "/API", method = RequestMethod.GET)
 public class RoomController {
 	
-	@Resource(name = "testService")
-	private TestService testService;
+	@Autowired
+	private DBService db;
 	
 	@RequestMapping(value = "/Room/list", method = RequestMethod.GET)
 	public ResponseEntity<String> register(@RequestParam("id") String id) {
