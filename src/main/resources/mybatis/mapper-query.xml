@@ -4,6 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace= "userMapper" >
+
+	<!--  User Query -->
     <insert id="fb_register" parameterType="java.util.HashMap">
     	insert into userdata
     	(email, token, nickname, mode)
@@ -20,5 +22,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT version
 		FROM version_data CU
 		WHERE idx = 1;
+    </select>
+    
+    <!--  Admin Query -->
+    <select id="getAllMember" resultType="java.util.HashMap">
+    	select email, token, password, nickname, mode, score
+    	from userdata;
     </select>
 </mapper>

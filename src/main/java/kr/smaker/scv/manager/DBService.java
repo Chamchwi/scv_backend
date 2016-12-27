@@ -22,4 +22,8 @@ public class DBService {
 	public String getVersion() throws Exception {
 		return sqlSession.selectOne("userMapper.getVersion");
 	}
+	
+	public HashMap<String, Object> getAllMember() throws Exception {
+		return (HashMap<String, Object>) sqlSession.selectList("userMapper.getAllMember");
+	}
 }
