@@ -27,12 +27,13 @@ public class UserController {
 	private DBService db;
 
 	@RequestMapping(value = "/normal_register", method = RequestMethod.POST)
-	public ResponseEntity<String> normal_register(HttpServletRequest request) throws DuplicateKeyException, UnsupportedEncodingException {
+	public ResponseEntity<String> normal_register(HttpServletRequest request)
+			throws DuplicateKeyException, UnsupportedEncodingException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
+
 		map.put("email", email);
 		map.put("password", password);
 		map.put("nickname", nickname);
@@ -52,7 +53,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/fb_register", method = RequestMethod.POST)
-	public ResponseEntity<String> facebook_register(HttpServletRequest request) throws DuplicateKeyException, UnsupportedEncodingException {
+	public ResponseEntity<String> facebook_register(HttpServletRequest request)
+			throws DuplicateKeyException, UnsupportedEncodingException {
 		String email = request.getParameter("email");
 		String token = request.getParameter("token");
 		String nickname = request.getParameter("nickname");
@@ -75,34 +77,39 @@ public class UserController {
 		return new UTF8Response("{\"success\":false}", "json").entity;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<String> login(HttpServletRequest request, @RequestParam("mode") String mode)
 			throws Exception {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String token = request.getParameter("token");
-		String version = db.getVersion();
-		
+		String version = null;
+
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		try {
 			data = db.loginRequest(email);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		if (mode.equals("normal")) {
-			if (data.get("mode").equals("normal") && data.get("password").equals(password)) {
-				return new UTF8Response("{\"success\":true, \"version\":" + "\"" + version + "\"" + "}", "json").entity;
-			} else {
-				return new UTF8Response("{\"success\":false}", "json").entity;
+
+			if (mode.equals("normal")) {
+				if (data.get("mode").equals("normal") && data.get("password").equals(password)) {
+					version = db.getVersion();
+					return new UTF8Response("{\"success\":true, \"version\":" + "\"" + version + "\"" + "}",
+							"json").entity;
+				} else {
+					return new UTF8Response("{\"success\":false}", "json").entity;
+				}
+			} else if (mode.equals("facebook")) {
+				if (data.get("mode").equals("facebook") && data.get("token").equals(token)) {
+					version = db.getVersion();
+					return new UTF8Response("{\"success\":true, \"version\":" + "\"" + version + "\"" + "}",
+							"json").entity;
+				} else {
+					return new UTF8Response("{\"success\":false}", "json").entity;
+				}
 			}
-		} else if (mode.equals("facebook")) {
-			if (data.get("mode").equals("facebook") && data.get("token").equals(token)) {
-				return new UTF8Response("{\"success\":true, \"version\":" + "\"" + version + "\"" + "}", "json").entity;
-			} else {
-				return new UTF8Response("{\"success\":false}", "json").entity;
-			}
+		} catch (Exception e) {
+			e.printStackTrace(); 
 		}
+
 		return new UTF8Response("{\"success\":false}", "json").entity;
 	}
 }

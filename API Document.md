@@ -27,6 +27,27 @@
   * 회원가입 성공 `{"success":true}`
   * 회원가입 실패(입력한 값이 하나라도 없을 경우) `{"success":false, "errorcode":"오류 발생! 다시 입력해주세요."}`
   
+# 로그인(일반/페이스북)
+ * 요청
+  * POST
+  * `/API/login`
+ * 인자 
+  * 일반 로그인
+  * mode : "normal", String
+  * email : String
+  * password : String
+  * 페이스북 로그인
+  * mode : "facebook", String
+  * email : String
+  * token : String
+ * 동작
+  * mode를 분류하여 normal인 경우 email과 password를 이용하여 로그인 판별 
+  * facebook인 경우 email과 id(고유한 정수값)를 이용하여 로그인 판별
+ * 반환 값
+  * 로그인 성공 시, `{"success": true, "version": "(currently version)"}`
+  * 로그인 실패 시, `{"success": false}`
+  
+  
 # 버전
  * 요청
   * GET
