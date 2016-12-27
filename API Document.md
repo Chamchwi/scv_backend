@@ -29,8 +29,8 @@
   
 # 버전
  * 요청
-  * GEt
-  * `/API/fb_register`
+  * GET
+  * `/version`
  * 인자 
   * (없음)
  * 동작
