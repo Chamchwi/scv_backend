@@ -57,7 +57,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return new UTF8Response("{\"success\":false}", "json").entity;;
+		return new UTF8Response("{\"success\":false}", "json").entity;
 	}
 
 	@RequestMapping(value = "/fb_register", method = RequestMethod.POST)
