@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class UserController {
 	private DBService db;
 
 	@RequestMapping(value = "/normal_register", method = RequestMethod.POST)
-	public ResponseEntity<String> normal_register(HttpServletRequest request) {
+	public ResponseEntity<String> normal_register(HttpServletRequest request) throws DuplicateKeyException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String nickname = request.getParameter("nickname");
@@ -55,11 +56,12 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		
+		return new UTF8Response("{\"success\":false}", "json").entity;;
 	}
 
 	@RequestMapping(value = "/fb_register", method = RequestMethod.POST)
-	public ResponseEntity<String> facebook_register(HttpServletRequest request) {
+	public ResponseEntity<String> facebook_register(HttpServletRequest request) throws DuplicateKeyException {
 		String email = request.getParameter("email");
 		String token = request.getParameter("token");
 		String nickname = request.getParameter("nickname");
@@ -79,6 +81,6 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new UTF8Response("{\"success\":false}", "json").entity;
 	}
 }
