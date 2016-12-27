@@ -26,6 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		version_data CU
 		WHERE idx = 1;
 	</select>
+	
+	<select id="loginRequest" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select email, password, token, mode
+		from userdata
+		where #{email}
+	</select>
 
 	<!-- Admin Query -->
 	<select id="getAllMember" parameterType="java.util.HashMap" resultType="java.util.HashMap">

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.smaker.scv.manager.DBService;
 import kr.smaker.scv.manager.UTF8Response;
@@ -69,5 +70,35 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return new UTF8Response("{\"success\":false}", "json").entity;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ResponseEntity<String> login(HttpServletRequest request, 
+			@RequestParam("mode") String mode) throws Exception {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String token = request.getParameter("token");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("email", email);
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data = db.loginRequest(map);
+		if (data.get("email").equals(email)) {
+			if (mode.equals("normal")) {
+				if (data.get("mode").equals("normal") && data.get("password").equals(password)) {
+					return new UTF8Response("{\"success\":true}", "json").entity;
+				} else {
+					return new UTF8Response("{\"success\":false}", "json").entity;
+				}
+			} else if (mode.equals("facebook")) {
+				if (data.get("mode").equals("facebook") && data.get("token").equals(token)) {
+					return new UTF8Response("{\"success\":true}", "json").entity;
+				} else {
+					return new UTF8Response("{\"success\":false}", "json").entity;
+				}
+			}
+		}
+		
+		return null;
 	}
 }

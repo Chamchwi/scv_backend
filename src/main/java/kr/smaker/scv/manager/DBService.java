@@ -28,5 +28,9 @@ public class DBService {
 	public List<Map<String, Object>> getAllMember(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList("userMapper.getAllMember", map);
 	}
+	
+	public HashMap<String, Object> loginRequest(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne("userMapper.loginRequest", map);
+	}
 
 }
