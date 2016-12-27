@@ -36,7 +36,6 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//jsonObject.put("result_list", jsonList);
 		return new UTF8Response("{\"version\":"
 				+ "\""
 				+ version

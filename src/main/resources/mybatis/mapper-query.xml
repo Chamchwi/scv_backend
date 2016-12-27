@@ -16,21 +16,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="normal_register" parameterType="java.util.HashMap">
 		insert into userdata
 		(email, password, nickname, mode)
-		values (#{email}, #{password},
-		#{nickname}, "normal")
+		values (#{email}, #{password}, #{nickname}, "normal")
 	</insert>
 
 	<select id="getVersion" resultType="String">
 		SELECT version
 		FROM
-		version_data CU
+		version_data
 		WHERE idx = 1;
 	</select>
 	
-	<select id="loginRequest" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="loginRequest" parameterType="String" resultType="java.util.HashMap">
 		select email, password, token, mode
 		from userdata
-		where #{email}
+		where email = #{email}
 	</select>
 
 	<!-- Admin Query -->
