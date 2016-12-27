@@ -1,6 +1,8 @@
 package kr.smaker.scv.manager;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +14,19 @@ public class DBService {
 	private SqlSessionTemplate sqlSession;
 
 	public void normal_register(HashMap<String, Object> map) throws Exception {
-    	sqlSession.insert("userMapper.normal_register", map);
-    }
-	
+		sqlSession.insert("userMapper.normal_register", map);
+	}
+
 	public void fb_register(HashMap<String, Object> map) throws Exception {
-    	sqlSession.insert("userMapper.fb_register", map);
-    }
-	
+		sqlSession.insert("userMapper.fb_register", map);
+	}
+
 	public String getVersion() throws Exception {
 		return sqlSession.selectOne("userMapper.getVersion");
 	}
-	
-	public HashMap<String, Object> getAllMember() throws Exception {
-		return (HashMap<String, Object>) sqlSession.selectList("userMapper.getAllMember");
+
+	public List<Map<String, Object>> getAllMember(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("userMapper.getAllMember", map);
 	}
+
 }

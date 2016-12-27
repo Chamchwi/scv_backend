@@ -3,30 +3,35 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace= "userMapper" >
+<mapper namespace="userMapper">
 
-	<!--  User Query -->
-    <insert id="fb_register" parameterType="java.util.HashMap">
-    	insert into userdata
-    	(email, token, nickname, mode)
-    	values (#{email}, #{token}, #{nickname}, "facebook")
-    </insert>
-    
-    <insert id="normal_register" parameterType="java.util.HashMap">
-    	insert into userdata
-    	(email, password, nickname, mode)
-    	values (#{email}, #{password}, #{nickname}, "normal")
-    </insert>
-    
-    <select id="getVersion" resultType="String">
+	<!-- User Query -->
+	<insert id="fb_register" parameterType="java.util.HashMap">
+		insert into userdata
+		(email, token, nickname, mode)
+		values (#{email}, #{token}, #{nickname},
+		"facebook")
+	</insert>
+
+	<insert id="normal_register" parameterType="java.util.HashMap">
+		insert into userdata
+		(email, password, nickname, mode)
+		values (#{email}, #{password},
+		#{nickname}, "normal")
+	</insert>
+
+	<select id="getVersion" resultType="String">
 		SELECT version
-		FROM version_data CU
+		FROM
+		version_data CU
 		WHERE idx = 1;
-    </select>
-    
-    <!--  Admin Query -->
-    <select id="getAllMember" resultType="java.util.HashMap">
+	</select>
+
+	<!-- Admin Query -->
+	<select id="getAllMember" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    <![CDATA[
     	select email, token, password, nickname, mode, score
-    	from userdata;
-    </select>
+    	from userdata
+          ]]>
+	</select>
 </mapper>
