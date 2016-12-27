@@ -45,22 +45,17 @@ public class HomeController {
 
 	@RequestMapping(value = "/version", method = RequestMethod.GET)
 	public ResponseEntity<String> version() {
-		String idx = "1";
-		// JSONObject obj = new JSONObject();
-		String data = null;
+		String version = null;
 		try {
-			// System.out.println(db.loadContents(idx));
-			
-			// data = db.loadContents(idx);
-			
-			//HashMap<String, Object> map = data.get(0);
-			//obj.put("version", map.get("version"));
-			System.out.println(data);
-			
+			version = db.getVersion();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		//jsonObject.put("result_list", jsonList);
-		return new UTF8Response("{\"success\":true}", "json").entity;
+		return new UTF8Response("{\"version\":"
+				+ "\""
+				+ version
+				+ "\""
+				+ "}", "json").entity;
 	}
 }

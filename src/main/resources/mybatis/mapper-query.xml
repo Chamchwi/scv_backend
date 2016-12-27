@@ -15,4 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	(email, password, nickname, mode)
     	values (#{email}, #{password}, #{nickname}, "normal")
     </insert>
+    
+    <select id="getVersion" resultType="String">
+		SELECT version
+		FROM version_data CU
+		WHERE idx = 1;
+    </select>
 </mapper>

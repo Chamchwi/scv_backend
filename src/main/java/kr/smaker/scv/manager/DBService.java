@@ -18,4 +18,8 @@ public class DBService {
 	public void fb_register(HashMap<String, Object> map) throws Exception {
     	sqlSession.insert("userMapper.fb_register", map);
     }
+	
+	public String getVersion() throws Exception {
+		return sqlSession.selectOne("userMapper.getVersion");
+	}
 }
