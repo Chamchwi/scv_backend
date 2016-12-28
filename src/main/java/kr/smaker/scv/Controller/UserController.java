@@ -2,8 +2,6 @@ package kr.smaker.scv.Controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -107,9 +105,9 @@ public class UserController {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 
 		return new UTF8Response("{\"success\":false}", "json").entity;
-	}
+	}	
 }
