@@ -23,11 +23,22 @@ public class RoomController {
 	@RequestMapping(value = "/refresh", method = RequestMethod.GET)
 	public ResponseEntity<String> refreshRoom(HttpServletRequest request) {
 		String email = request.getParameter("email");
+		
 		return null;
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ResponseEntity<String> createRoom(HttpServletRequest request) {
+		return null;
+	}
+	
+	@RequestMapping(value = "/enter", method = RequestMethod.GET)
+	public ResponseEntity<String> enterRoom(HttpServletRequest request) {
+		return null;
+	}
+	
+	@RequestMapping(value = "/out", method = RequestMethod.GET)
+	public ResponseEntity<String> outRoom(HttpServletRequest request) {
 		return null;
 	}
 }
