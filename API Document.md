@@ -55,6 +55,7 @@
  * 인자
   * master_email : String
   * game_mode : String ("Skill" or "Classic")
+  * room_title : String
  * 동작
   * 대기방을 생성함 (서버에서는 방 고유 아이디를 생성)
  * 반환 값
