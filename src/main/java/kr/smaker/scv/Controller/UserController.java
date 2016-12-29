@@ -109,5 +109,5 @@ public class UserController {
 		}
 
 		return new UTF8Response("{\"success\":false}", "json").entity;
-	}	
+	}
 }
