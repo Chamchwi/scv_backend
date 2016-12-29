@@ -34,8 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="createRoom" parameterType="java.util.HashMap">
 		insert into roomdata 
-		(master_email, game_mode)
-		values (#{master_email}, #{game_mode})
+		(master_email, game_mode, title)
+		values (#{master_email}, #{game_mode}, #{title})
 	</insert>
 	
 	<select id="getRoomid" parameterType="String" resultType="Integer">

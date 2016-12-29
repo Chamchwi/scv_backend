@@ -28,16 +28,19 @@ public class RoomController {
 		return null;
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ResponseEntity<String> createRoom(HttpServletRequest request) throws Exception, DuplicateKeyException {
 		String master_email = request.getParameter("master_email");
 		String game_mode = request.getParameter("game_mode");
+		String room_title = request.getParameter("room_title");
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int room_id;
 
-		if (master_email != null && game_mode != null) {
+		if (master_email != null && game_mode != null && room_title != null) {
 			map.put("master_email", master_email);
 			map.put("game_mode", game_mode);
+			map.put("title", room_title);
 			db.createRoom(map);
 			room_id = db.getRoomid(master_email);
 			return new UTF8Response("{\"room\":" + "\"" + room_id + "\"" + "}", "json").entity;
