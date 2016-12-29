@@ -13,6 +13,10 @@ public class DBService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	/*
+	 *  		User Query
+	 */
+
 	public void normal_register(HashMap<String, Object> map) throws Exception {
 		sqlSession.insert("userMapper.normal_register", map);
 	}
@@ -24,14 +28,25 @@ public class DBService {
 	public String getVersion() throws Exception {
 		return sqlSession.selectOne("userMapper.getVersion");
 	}
-	
-	public List<Map<String, Object>> getAllMember(Map<String, Object> map) throws Exception {
-		return sqlSession.selectList("userMapper.getAllMember", map);
-	}
-	
+
 	public HashMap<String, Object> loginRequest(String param) throws Exception {
 		return sqlSession.selectOne("userMapper.loginRequest", param);
 	}
 	
+	public void createRoom(HashMap<String, Object> map) throws Exception {
+		sqlSession.insert("userMapper.createRoom", map);
+	}
+	
+	public int getRoomid(String param) throws Exception {
+		return sqlSession.selectOne("userMapper.getRoomid", param);
+	}
+
+	/*
+	 *  		Admin Query
+	 */
+
+	public List<Map<String, Object>> getAllMember(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList("userMapper.getAllMember", map);
+	}
 
 }

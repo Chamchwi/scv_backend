@@ -31,6 +31,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from userdata
 		where email = #{email}
 	</select>
+	
+	<insert id="createRoom" parameterType="java.util.HashMap">
+		insert into roomdata 
+		(master_email, game_mode)
+		values (#{master_email}, #{game_mode})
+	</insert>
+	
+	<select id="getRoomid" parameterType="String" resultType="Integer">
+		select id
+		from roomdata
+		where master_email = #{master_email}
+	</select>
 
 	<!-- Admin Query -->
 	<select id="getAllMember" parameterType="java.util.HashMap" resultType="java.util.HashMap">

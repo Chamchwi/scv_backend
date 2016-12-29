@@ -48,6 +48,20 @@
   * 로그인 실패 시, `{"success": false}`
   
   
+# 방 만들기
+ * 요청
+  * POST
+  * `/API/Room/create`
+ * 인자
+  * master_email : String
+  * game_mode : String ("Skill" or "Classic")
+ * 동작
+  * 대기방을 생성함 (서버에서는 방 고유 아이디를 생성)
+ * 반환 값
+  * 방 만들기 성공 시, `{"room": "(Room Number)"}`
+  * 방 만들기 실패 시, `{"success": false}`
+  
+  
 # 버전
  * 요청
   * GET

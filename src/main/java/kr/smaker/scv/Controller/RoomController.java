@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +29,20 @@ public class RoomController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ResponseEntity<String> createRoom(HttpServletRequest request) {
-		return null;
+	public ResponseEntity<String> createRoom(HttpServletRequest request) throws Exception, DuplicateKeyException {
+		String master_email = request.getParameter("master_email");
+		String game_mode = request.getParameter("game_mode");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		int room_id;
+
+		if (master_email != null && game_mode != null) {
+			map.put("master_email", master_email);
+			map.put("game_mode", game_mode);
+			db.createRoom(map);
+			room_id = db.getRoomid(master_email);
+			return new UTF8Response("{\"room\":" + "\"" + room_id + "\"" + "}", "json").entity;
+		}
+		return new UTF8Response("{\"success\":false}", "json").entity;
 	}
 
 	@RequestMapping(value = "/enter", method = RequestMethod.GET)
