@@ -1,5 +1,6 @@
 package kr.smaker.scv.Controller;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,15 +32,14 @@ public class HomeController {
 	@RequestMapping(value = "/version", method = RequestMethod.GET)
 	public ResponseEntity<String> version() {
 		String version = null;
+		JSONObject obj = new JSONObject();
 		try {
 			version = db.getVersion();
+			obj.put("version", version);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new UTF8Response("{\"version\":"
-				+ "\""
-				+ version
-				+ "\""
-				+ "}", "json").entity;
+		
+		return new UTF8Response(obj.toJSONString(), "json").entity;
 	}
 }

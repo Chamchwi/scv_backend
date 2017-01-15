@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -75,6 +74,11 @@ public class RoomController {
 
 	@RequestMapping(value = "/enter", method = RequestMethod.GET)
 	public ResponseEntity<String> enterRoom(HttpServletRequest request) {
+		String email = request.getParameter("email");
+		String game_mode = request.getParameter("game_mode");
+		String room_id = request.getParameter("room_id");
+		
+		
 		return null;
 	}
 
