@@ -48,10 +48,6 @@ public class DBService {
 	public List<HashMap<String, Object>> getRoomData() throws Exception {
 		return sqlSession.selectList("userMapper.getRoomData");
 	}
-	
-	public int getRoomCount() throws Exception {
-		return sqlSession.selectOne("userMapper.getRoomCount");
-	}
 
 	/*
 	 *  		Admin Query

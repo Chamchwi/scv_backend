@@ -33,13 +33,9 @@ public class RoomController {
 		int score = -1;
 		JSONObject obj = new JSONObject();
 		List<HashMap<String, Object>> list = null;
-		int room_cnt = -1;
-		room_cnt = db.getRoomCount();
 		
 		try {
-			for (int i = 1; i < room_cnt; i++) {
-				list = db.getRoomData();
-			}
+			list = db.getRoomData();
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
