@@ -1,15 +1,21 @@
 package kr.smaker.scv.Controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import kr.smaker.scv.manager.DBService;
 import kr.smaker.scv.manager.UTF8Response;
 
@@ -22,10 +28,33 @@ public class RoomController {
 	private DBService db;
 
 	@RequestMapping(value = "/refresh", method = RequestMethod.GET)
-	public ResponseEntity<String> refreshRoom(HttpServletRequest request) {
+	public @ResponseBody ResponseEntity<String> refreshRoom(HttpServletRequest request) throws Exception {
 		String email = request.getParameter("email");
+		int score = -1;
+		JSONObject obj = new JSONObject();
+		List<HashMap<String, Object>> list = null;
+		int room_cnt = -1;
+		room_cnt = db.getRoomCount();
+		
+		try {
+			for (int i = 1; i < room_cnt; i++) {
+				list = db.getRoomData();
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			score = Integer.parseInt(db.getScore(email));
+			obj.put("rating_score", score);
+			obj.put("room_data", list);
+		} catch (Exception e) {
+			obj.clear();
+			obj.put("success", false);
+			return new UTF8Response(obj.toJSONString(), "json").entity;
+		}
 
-		return null;
+		return new UTF8Response(obj.toJSONString(), "json").entity;
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -33,7 +62,7 @@ public class RoomController {
 		String master_email = request.getParameter("master_email");
 		String game_mode = request.getParameter("game_mode");
 		String room_title = request.getParameter("room_title");
-		
+
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		int room_id;
 

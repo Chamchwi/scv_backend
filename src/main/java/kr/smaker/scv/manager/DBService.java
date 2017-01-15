@@ -40,6 +40,18 @@ public class DBService {
 	public int getRoomid(String param) throws Exception {
 		return sqlSession.selectOne("userMapper.getRoomid", param);
 	}
+	
+	public String getScore(String param) throws Exception {
+		return sqlSession.selectOne("userMapper.getScore", param);
+	}
+	
+	public List<HashMap<String, Object>> getRoomData() throws Exception {
+		return sqlSession.selectList("userMapper.getRoomData");
+	}
+	
+	public int getRoomCount() throws Exception {
+		return sqlSession.selectOne("userMapper.getRoomCount");
+	}
 
 	/*
 	 *  		Admin Query

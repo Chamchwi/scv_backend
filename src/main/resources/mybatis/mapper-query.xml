@@ -43,6 +43,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from roomdata
 		where master_email = #{master_email}
 	</select>
+	
+	<select id="getScore" parameterType="String" resultType="String">
+		select score
+		from userdata
+		where email = #{email}
+	</select>
+	
+	<select id="getRoomData" resultType="java.util.HashMap">
+		select master_email, title, game_mode
+		from roomdata
+	</select>
+	
+	<select id="getRoomCount" resultType="Integer">
+			select count(*) from roomdata
+	</select>
 
 	<!-- Admin Query -->
 	<select id="getAllMember" parameterType="java.util.HashMap" resultType="java.util.HashMap">
