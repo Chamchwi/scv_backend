@@ -25,7 +25,7 @@ public class RoomController {
 
 	@Autowired
 	private DBService db;
-
+	
 	@RequestMapping(value = "/refresh", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> refreshRoom(HttpServletRequest request) throws Exception {
 		String email = request.getParameter("email");

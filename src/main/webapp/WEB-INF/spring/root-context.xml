@@ -8,7 +8,8 @@
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
 	<bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
 		<property name="driver" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/scv?useUnicode=yes&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/scv?useUnicode=yes&amp;characterEncoding=UTF-8&amp;autoReconnect=true"></property>
 		<property name="username" value="scv"></property>
 		<property name="password" value="1234"></property>
 	</bean>
