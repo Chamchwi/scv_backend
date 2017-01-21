@@ -78,7 +78,6 @@ public class RoomController {
 		String game_mode = request.getParameter("game_mode");
 		String room_id = request.getParameter("room_id");
 		
-			
 		
 		return null;
 	}
