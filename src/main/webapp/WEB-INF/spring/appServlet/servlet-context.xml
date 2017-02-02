@@ -28,11 +28,11 @@
 	</beans:bean>
 
 	<context:component-scan base-package="kr.smaker.scv" />
-
-	<websocket:handlers>
-		<websocket:mapping path="/broadcast/normal" handler="NormalModeHandler" />
-	</websocket:handlers>
 	
 	<beans:bean id="NormalModeHandler" class="kr.smaker.scv.Controller.NormalModeHandler" />
 	
+	<websocket:handlers>
+		<websocket:mapping path="/broadcast/normal" handler="NormalModeHandler" />
+	</websocket:handlers>
+
 </beans:beans>

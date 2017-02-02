@@ -37,14 +37,14 @@ public class NormalModeHandler extends TextWebSocketHandler implements Initializ
 
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-	
+
 	}
 
 	@Override
 	public boolean supportsPartialMessages() {
 		return super.supportsPartialMessages();
 	}
-	
+
 	public void sendEmail(String message) {
 		for (WebSocketSession session : this.sessionSet) {
 			String data = null;
@@ -55,7 +55,7 @@ public class NormalModeHandler extends TextWebSocketHandler implements Initializ
 					e.printStackTrace();
 				}
 			} else {
-				
+
 			}
 		}
 	}
@@ -76,6 +76,7 @@ public class NormalModeHandler extends TextWebSocketHandler implements Initializ
 	public void afterPropertiesSet() throws Exception {
 		Thread thread = new Thread() {
 			int i = 0;
+
 			@Override
 			public void run() {
 				while (true) {
