@@ -76,7 +76,7 @@
   
  
 
-#Skill ChessV Server Relay Document
+# Skill ChessV Server Relay Document
 
 # 방만들기
  * 인자
