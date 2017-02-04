@@ -28,4 +28,10 @@ public class AdminController {
 		modelMap.addObject("list", list);
 		return "admin/UserList";
 	}
+	
+	@RequestMapping(value = "/user/delete", method = RequestMethod.GET)
+	public ResponseEntity<String> userDelete(ModelMap modelMap) {
+		
+		return null;
+	}
 }

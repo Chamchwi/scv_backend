@@ -32,6 +32,7 @@ public class RoomController {
 		JSONObject obj = new JSONObject();
 		List<HashMap<String, Object>> list = null;
 		
+
 		try {
 			list = db.getRoomData();
 		} catch (NullPointerException e) {
@@ -76,7 +77,6 @@ public class RoomController {
 		String email = request.getParameter("email");
 		String game_mode = request.getParameter("game_mode");
 		String room_id = request.getParameter("room_id");
-		
 		
 		return null;
 	}

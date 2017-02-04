@@ -39,7 +39,8 @@ public class NormalModeHandler extends TextWebSocketHandler implements Initializ
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
 
 	}
-
+	
+	
 	@Override
 	public boolean supportsPartialMessages() {
 		return super.supportsPartialMessages();
