@@ -112,7 +112,41 @@
   * 클라1과 클라2에게 게임 시작정보를 초기화하여 반환함 //203 전송 후 바로
  * 반환 값
   * 게임정보 초기화(Classic) `{"pattern":204, "enemy_nickname":"상대방닉네임", "enemy_score":상대방레이팅}`
-  * 게임정보 초기화(Skill) `{"pattern":204}` //추가 필요
+  * 게임정보 초기화(Skill) `{"pattern":204, "enemy_nickname":"상대방닉네임", "enemy_score":상대방레이팅, 
+  "classCode": {
+  "WhitePawn1" : 클래스코드값,
+  "WhitePawn2" : 클래스코드값,
+  "WhitePawn3" : 클래스코드값,
+  "WhitePawn4" : 클래스코드값,
+  "WhitePawn5" : 클래스코드값,
+  "WhitePawn6" : 클래스코드값,
+  "WhitePawn7" : 클래스코드값,
+  "WhitePawn8" : 클래스코드값,
+  "WhiteRook1" : 클래스코드값,
+  "WhiteRook2" : 클래스코드값,
+  "WhiteBishop1" : 클래스코드값,
+  "WhiteBishop2" : 클래스코드값,
+  "WhiteKnight1" : 클래스코드값,
+  "WhiteKnight2" : 클래스코드값,
+  "WhiteQueen" : 클래스코드값,
+  "WhiteKing" : 클래스코드값,
+  "BlackPawn1" : 클래스코드값,
+  "BlackPawn2" : 클래스코드값,
+  "BlackPawn3" : 클래스코드값,
+  "BlackPawn4" : 클래스코드값,
+  "BlackPawn5" : 클래스코드값,
+  "BlackPawn6" : 클래스코드값,
+  "BlackPawn7" : 클래스코드값,
+  "BlackPawn8" : 클래스코드값,
+  "BlackRook1" : 클래스코드값,
+  "BlackRook2" : 클래스코드값,
+  "BlackBishop1" : 클래스코드값,
+  "BlackBishop2" : 클래스코드값,
+  "BlackKnight1" : 클래스코드값,
+  "BlackKnight2" : 클래스코드값,
+  "BlackQueen" : 클래스코드값,
+  "BlackKing" : 클래스코드값
+  } }`//추가 필요
 
 # 승리/패배
  * 인자
@@ -185,3 +219,5 @@
   * 클라1이 앙파상 데이터 전송, 서버는 클라1과 2에게 데이터를 그대로 전송
  * 반환 값
   * 게임시작 `위의 인자값과 동일`
+  
+# Skill
